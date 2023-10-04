@@ -22,10 +22,10 @@ namespace QuanLyKho.Model
                 _ins = value;
             }
         }
-        public QUANLYKHOEntities1 DB { get;set; }
+        public QUANLYKHOEntities5 DB { get;set; }
         private DataProvider()
         {
-            DB = new QUANLYKHOEntities1();  
+            DB = new QUANLYKHOEntities5();  
         }
     }
 }
