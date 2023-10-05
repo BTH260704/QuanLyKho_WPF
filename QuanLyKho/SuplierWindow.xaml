@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        DataContext="{StaticResource MainVM}"
+        DataContext="{StaticResource SuplierVM}"
         WindowStyle="None"
         x:Name="window"
         WindowStartupLocation="CenterScreen"
@@ -65,7 +65,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <DatePicker Margin="5 5 15 5"
                                 SelectedDate="{Binding ContractDate}"
-                                Width="110"
+                                Width="110"  
                                 materialDesign:HintAssist.Hint="Ngày hợp tác" 
                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
@@ -85,13 +85,13 @@
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                <GridViewColumn Header="Tên nhà cung cấp" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Address}"></GridViewColumn>
-                                <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding Phone}"></GridViewColumn>
-                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                                <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày hợp tác" DisplayMemberBinding="{Binding ContractDate}"></GridViewColumn>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                                <GridViewColumn Header="Tên nhà cung cấp" DisplayMemberBinding="{Binding DISPLAYNAME}" ></GridViewColumn>
+                                <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding ADDRESS}" ></GridViewColumn>
+                                <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding PHONE}" ></GridViewColumn>
+                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
+                                <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MOREINFO}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày hợp tác" DisplayMemberBinding="{Binding CONTRACTDATE}" HeaderStringFormat="dd/MM/yyyy"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
