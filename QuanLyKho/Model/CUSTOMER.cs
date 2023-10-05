@@ -9,10 +9,11 @@
 
 namespace QuanLyKho.Model
 {
+    using QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class CUSTOMER
+    public partial class CUSTOMER: BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CUSTOMER()
@@ -21,13 +22,24 @@ namespace QuanLyKho.Model
         }
     
         public int ID { get; set; }
-        public string DISPLAYNAME { get; set; }
-        public string ADDRESS { get; set; }
-        public string PHONE { get; set; }
-        public string EMAIL { get; set; }
-        public string MOREINFO { get; set; }
-        public Nullable<System.DateTime> CONTRACTDATE { get; set; }
-    
+        private string _DISPLAYNAME;
+        public string DISPLAYNAME { get => _DISPLAYNAME; set { _DISPLAYNAME = value; OnPropertyChanged(); } }
+
+        private string _ADDRESS;
+        public string ADDRESS { get => _ADDRESS; set { _ADDRESS = value; OnPropertyChanged(); } }
+
+        private string _PHONE;
+        public string PHONE { get => _PHONE; set { _PHONE = value; OnPropertyChanged(); } }
+
+        private string _EMAIL;
+        public string EMAIL { get => _EMAIL; set { _EMAIL = value; OnPropertyChanged(); } }
+        private string _MOREINFO;
+        public string MOREINFO { get => _MOREINFO; set { _MOREINFO = value; OnPropertyChanged(); } }
+
+        private Nullable<System.DateTime> _CONTRACTDATE { get; set; }
+
+        public Nullable<System.DateTime> CONTRACTDATE { get => _CONTRACTDATE; set { _CONTRACTDATE = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OUTPUTINFO> OUTPUTINFOes { get; set; }
     }

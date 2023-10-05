@@ -446,7 +446,7 @@
                             <Separator Margin="5"></Separator>
                         </Grid>
                         <Grid Grid.Row="2">
-                            <ListView ItemsSource="{Binding TonKhoList}">
+                            <ListView ItemsSource="{Binding TonKhoList}" >
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>

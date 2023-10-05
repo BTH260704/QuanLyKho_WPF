@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QuanLyKho.ViewModel
@@ -15,9 +14,10 @@ namespace QuanLyKho.ViewModel
     {
         private ObservableCollection<TonKho> _TonKhoList;
         public ObservableCollection<TonKho> TonKhoList { get => _TonKhoList; set { _TonKhoList = value; OnPropertyChanged(); } }
-        public bool IsLoaded = false;
+
+        public bool Isloaded = false;
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand UnitCommand { get; set; }   
+        public ICommand UnitCommand { get; set; }
         public ICommand SuplierCommand { get; set; }
         public ICommand CustomerCommand { get; set; }
         public ICommand ObjectCommand { get; set; }
@@ -25,67 +25,76 @@ namespace QuanLyKho.ViewModel
         public ICommand InputCommand { get; set; }
         public ICommand OutputCommand { get; set; }
 
-        // Để theo dõi trạng thái hiển thị của LoginWindow
-        private bool loginWindowShown = false;
-
+        // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; },
-                (p) =>
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+                Isloaded = true;
+                if (p == null)
+                    return;
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
                 {
-                    IsLoaded = true;
-                    if (p == null)
-                        return;
-                    p.Hide();
-                    LoginWindow login = new LoginWindow();
-                    login.ShowDialog();
+                    p.Show();
+                    LoadTonKhoData();
+                }
+                else
+                {
+                    p.Close();
+                }
+            }
+              );
 
-                    if (login.DataContext == null)
-                        return;
-                    var loginVM = login.DataContext as LoginViewModel; 
-
-                    if(loginVM.IsLogin) 
-                    {
-                        p.Show();
-                        LoadTonKhoData();                    }
-                    else
-                    {
-                        p.Close();
-                    }
-                });
-            UnitCommand = new RelayCommand<object>((p) => { return true; }, (p) =>{UnitWindow wd = new UnitWindow();wd.ShowDialog();});
-            SuplierCommand = new RelayCommand<object>((p) => { return true; }, (p) =>{ SuplierWindow wd = new SuplierWindow();wd.ShowDialog();});
-            CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) =>{ CustomerWindow wd = new CustomerWindow();wd.ShowDialog();});
+            UnitCommand = new RelayCommand<object>((p) => { return true; }, (p) => { UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
+            SuplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { SuplierWindow wd = new SuplierWindow(); wd.ShowDialog(); });
+            CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
             ObjectCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ObjectWindow wd = new ObjectWindow(); wd.ShowDialog(); });
             UserCommand = new RelayCommand<object>((p) => { return true; }, (p) => { UserWindow wd = new UserWindow(); wd.ShowDialog(); });
             InputCommand = new RelayCommand<object>((p) => { return true; }, (p) => { InputWindow wd = new InputWindow(); wd.ShowDialog(); });
             OutputCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OutputWindow wd = new OutputWindow(); wd.ShowDialog(); });
-
         }
+
         void LoadTonKhoData()
         {
             TonKhoList = new ObservableCollection<TonKho>();
+
             var objectList = DataProvider.Ins.DB.OBJECTSSes;
 
             int i = 1;
             foreach (var item in objectList)
             {
-                var inputList  = DataProvider.Ins.DB.INPUTINFOes.Where(p=>p.IDOBJECT == item.ID);
-                var outputList  = DataProvider.Ins.DB.OUTPUTINFOes.Where(p=>p.IDOBJECT == item.ID);
-                int SumInput = 0;
-                int SumOutput = 0;
-                if (inputList != null)
-                    SumInput = (int)inputList.Sum(p => p.COUNT);
-                if (outputList != null)
-                    SumOutput = (int)outputList.Sum(p => p.COUNT);
+                var inputList = DataProvider.Ins.DB.INPUTINFOes.Where(p => p.IDOBJECT == item.ID);
+                var outputList = DataProvider.Ins.DB.OUTPUTINFOes.Where(p => p.IDOBJECT == item.ID);
+
+                int sumInput = 0;
+                int sumOutput = 0;
+
+                if (inputList != null && inputList.Count() > 0)
+                {
+                    sumInput = (int)inputList.Sum(p => p.COUNT);
+                }
+                if (outputList != null && outputList.Count() > 0)
+                {
+                    sumOutput = (int)outputList.Sum(p => p.COUNT);
+                }
+
                 TonKho tonkho = new TonKho();
                 tonkho.STT = i;
-                tonkho.Count = SumInput - SumOutput;
+                tonkho.Count = sumInput - sumOutput;
                 tonkho.Object = item;
+
                 TonKhoList.Add(tonkho);
+
                 i++;
             }
+
         }
     }
-
 }
