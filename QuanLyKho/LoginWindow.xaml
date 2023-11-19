@@ -13,106 +13,101 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        
+        Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        WindowStyle="None" AllowsTransparency="True"
-        Background="Transparent"
+        WindowStyle="None"
         Name="loginwindow"
         DataContext="{StaticResource LoginVM}"
         WindowStartupLocation="CenterScreen"
         Title="LoginWindow" Height="600" Width="900">
     <Grid>
-        <Border CornerRadius="20"  Height="600" Width="900">
-            <Border.Background>
-                <ImageBrush ImageSource="C:\Users\Laptop MSI\Downloads\scandinavian-interior-mockup-wall-decal-background 1.png"></ImageBrush>
-            </Border.Background>
-            <Grid>
-                <Grid HorizontalAlignment="Right"
-                      VerticalAlignment="Top"
-                      Margin="0,10,10,0">
-                    <materialDesign:PackIcon Kind="WindowClose" 
-                                             Width="30"
-                                             Height="30"
-                                             
-                                             Foreground="#FF534F4F"/>
-                </Grid>
-                <materialDesign:Card Margin="0 10 0 0" Padding="5"
-                     Height="400" Width="350"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Center">
-                    <Grid Margin="15">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" Margin="0 15 0 0">
-                            <TextBlock VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="30"
-                           FontWeight="Bold"
-                           Foreground="Purple">
-                    LOGIN HERE
-                            </TextBlock>
-                        </Grid>
-                        <Grid Grid.Row="1" Margin="0 35 0 0">
-                            <PasswordBox  materialDesign:HintAssist.Foreground="Red"
-                                          materialDesign:TextFieldAssist.UnderlineBrush="Red"
-                                          materialDesign:HintAssist.HelperText="Helper text"
-                                          materialDesign:HintAssist.Hint="Password"
-                                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
-                        </Grid>
-                        <Grid Grid.Row="2" Margin="0 15 0 0">
-                            <PasswordBox x:Name="FloatingPasswordBox"
-                         materialDesign:HintAssist.Foreground="#FF673AB7"
-                         materialDesign:HintAssist.Hint="Password"
-                         materialDesign:TextFieldAssist.UnderlineBrush="#FF673AB7"
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
-                         Height="50"
-                         FontSize="17">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="PasswordChanged">
-                                        <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
-                                                   CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </PasswordBox>
-                        </Grid>
-                        <Grid Grid.Row="3" Margin="0 15 0 0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <CheckBox>
-                                    <TextBlock>
-                            Remember me
-                                    </TextBlock>
-                                </CheckBox>
-                            </Grid>
-                            <Grid Grid.Column="1" HorizontalAlignment="Right">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=loginwindow}"></uc:ControlBarUC>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <materialDesign:Card Margin="0 10 0 0" Padding="5"
+                             Height="400" Width="350"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center">
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0 15 0 0">
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   FontWeight="Bold"
+                                   Foreground="Purple">
+                            LOGIN HERE
+                        </TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="0 35 0 0">
+                        <TextBox VerticalAlignment="Center"
+                                 Text="{Binding UserName}"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#FF673AB7"
+                                 materialDesign:HintAssist.Foreground="#FF673AB7"
+                                 materialDesign:HintAssist.Hint="UserName"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Height="50"
+                                 FontSize="17" Background="#00000000"/>
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="0 15 0 0">
+                        <PasswordBox x:Name="FloatingPasswordBox"
+                                 materialDesign:HintAssist.Foreground="#FF673AB7"
+                                 materialDesign:HintAssist.Hint="Password"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#FF673AB7"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                                 Height="50"
+                                 FontSize="17">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                           CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="0 15 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <CheckBox>
                                 <TextBlock>
-                        Forgot password?
+                                    Remember me
                                 </TextBlock>
-
-                            </Grid>
+                            </CheckBox>
                         </Grid>
-                        <Grid Grid.Row="4" Margin="0 40 0 0">
-                            <Grid>
-                                <Button Width="150"
-                            IsDefault="True"
-                            Content="Login"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                            Command="{Binding LoginCommand}"
-                            CommandParameter="{Binding ElementName=loginwindow}"/>
-                            </Grid>
+                        <Grid Grid.Column="1" HorizontalAlignment="Right">
+                            <TextBlock>
+                                Forgot password?
+                            </TextBlock>
+
                         </Grid>
                     </Grid>
-                </materialDesign:Card>
-            </Grid>
-        </Border>
+                    <Grid Grid.Row="4" Margin="0 40 0 0">
+                        <Grid>
+                            <Button Width="150"
+                                    IsDefault="True"
+                                    Content="Login"
+                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                                    Command="{Binding LoginCommand}"
+                                    CommandParameter="{Binding ElementName=loginwindow}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
     </Grid>
 </Window>
