@@ -1,4 +1,4 @@
-﻿<Window x:Class="QuanLyKho.ObjectWindow"
+﻿<Window x:Class="QuanLyKho.SuplierWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,11 +15,11 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        DataContext="{StaticResource MainVM}"
+        DataContext="{StaticResource SuplierVM}"
         WindowStyle="None"
         x:Name="window"
         WindowStartupLocation="CenterScreen"
-        Title="Vật tư" Height="600" Width="900">
+        Title="Nhà cung cấp" Height="600" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -39,32 +39,36 @@
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox VerticalAlignment="Center"
-                             Text="{Binding DisplayName,UpdateSourceTrigger=PropertyChanged}"
-                             materialDesign:HintAssist.Hint="Tên vật tư"
-                             Margin="5 5 15 5"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox ItemsSource="{Binding Unit}" SelectedItem="{Binding SelectedUnit,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              materialDesign:HintAssist.Hint="Đơn vị đo" 
-                              materialDesign:HintAssist.IsFloating="True" 
-                              Margin="5 5 15 5"
-                              IsEnabled="True"> 
-                    </ComboBox>
-                    <ComboBox ItemsSource="{Binding Suplier}" SelectedItem="{Binding SelectedSuplier,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              materialDesign:HintAssist.Hint="Nhà cung cấp" 
-                              materialDesign:HintAssist.IsFloating="True" 
-                              Margin="5 5 15 5"
-                              IsEnabled="True">
-                    </ComboBox>
-                    <TextBox VerticalAlignment="Center"
-                             Text="{Binding QRCode,UpdateSourceTrigger=PropertyChanged}"
-                             materialDesign:HintAssist.Hint="QR code"
+                             Text="{Binding DisplayName}"
+                             materialDesign:HintAssist.Hint="Tên nhà cung cấp"
                              Margin="5 5 15 5"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox VerticalAlignment="Center"
-                             Text="{Binding BarCode,UpdateSourceTrigger=PropertyChanged}"
-                             materialDesign:HintAssist.Hint="Bar code"
+                             Text="{Binding Address}"
+                             materialDesign:HintAssist.Hint="Địa chỉ"
                              Margin="5 5 15 5"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox VerticalAlignment="Center"
+                             Text="{Binding Phone}"
+                             materialDesign:HintAssist.Hint="Số điện thoại"
+                             Margin="5 5 15 5"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox VerticalAlignment="Center"
+                             Text="{Binding Email}"
+                             materialDesign:HintAssist.Hint="Email"
+                             Margin="5 5 15 5"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox VerticalAlignment="Center"
+                             Text="{Binding MoreInfo}"
+                             materialDesign:HintAssist.Hint="Thông tin thêm"
+                             Margin="5 5 15 5"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <DatePicker Margin="5 5 15 5"
+                                SelectedDate="{Binding ContractDate}"
+                                Width="110"  
+                                materialDesign:HintAssist.Hint="Ngày hợp tác" 
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -81,12 +85,13 @@
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding Unit.DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Nhà cung cấp" DisplayMemberBinding="{Binding Suplier.DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="QRCode" DisplayMemberBinding="{Binding QRCode}"></GridViewColumn>
-                                <GridViewColumn Header="BarCode" DisplayMemberBinding="{Binding BarCode}"></GridViewColumn>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                                <GridViewColumn Header="Tên nhà cung cấp" DisplayMemberBinding="{Binding DISPLAYNAME}" ></GridViewColumn>
+                                <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding ADDRESS}" ></GridViewColumn>
+                                <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding PHONE}" ></GridViewColumn>
+                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
+                                <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MOREINFO}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày hợp tác" DisplayMemberBinding="{Binding CONTRACTDATE}" HeaderStringFormat="dd/MM/yyyy"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

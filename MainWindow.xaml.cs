@@ -24,5 +24,10 @@ namespace QuanLyKho
         {
             InitializeComponent();
         }
+
+        private void ListView_SelectionChanged()
+        {
+
+        }
     }
 }

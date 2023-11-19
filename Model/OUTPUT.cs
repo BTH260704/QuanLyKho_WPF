@@ -12,23 +12,18 @@ namespace QuanLyKho.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class SUPLIER
+    public partial class OUTPUT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SUPLIER()
+        public OUTPUT()
         {
-            this.OBJECTSSes = new HashSet<OBJECTSS>();
+            this.OUTPUTINFOes = new HashSet<OUTPUTINFO>();
         }
     
-        public int ID { get; set; }
-        public string DISPLAYNAME { get; set; }
-        public string ADDRESS { get; set; }
-        public string PHONE { get; set; }
-        public string EMAIL { get; set; }
-        public string MOREINFO { get; set; }
-        public Nullable<System.DateTime> CONTRACTDATE { get; set; }
+        public string ID { get; set; }
+        public Nullable<System.DateTime> DATEOUTPUT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OBJECTSS> OBJECTSSes { get; set; }
+        public virtual ICollection<OUTPUTINFO> OUTPUTINFOes { get; set; }
     }
 }

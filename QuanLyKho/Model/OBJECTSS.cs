@@ -9,11 +9,10 @@
 
 namespace QuanLyKho.Model
 {
-    using QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class OBJECTSS: BaseViewModel
+    public partial class OBJECTSS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OBJECTSS()
@@ -21,33 +20,19 @@ namespace QuanLyKho.Model
             this.INPUTINFOes = new HashSet<INPUTINFO>();
             this.OUTPUTINFOes = new HashSet<OUTPUTINFO>();
         }
-        private string _ID;
-        public string ID { get => _ID; set { _ID = value; OnPropertyChanged(); } }
-
-        private string _DISPLAYNAME;
-        public string DISPLAYNAME { get => _DISPLAYNAME; set { _DISPLAYNAME = value; OnPropertyChanged(); } }
-
-        private int _IDUNIT;
-        public int IDUNIT { get => _IDUNIT; set { _IDUNIT = value; OnPropertyChanged(); } }
-
-        private int _IDSUPLIER;
-        public int IDSUPLIER { get => _IDSUPLIER; set { _IDSUPLIER = value; OnPropertyChanged(); } }
-
-        private string _QRCODE;
-        public string QRCODE { get => _QRCODE; set { _QRCODE = value; OnPropertyChanged(); } }
-
-        private string _BARCODE;
-        public string BARCODE { get => _BARCODE; set { _BARCODE = value; OnPropertyChanged(); } }
-
     
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public string ID { get; set; }
+        public string DISPLAYNAME { get; set; }
+        public int IDUNIT { get; set; }
+        public int IDSUPLIER { get; set; }
+        public string QRCODE { get; set; }
+        public string BARCODE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INPUTINFO> INPUTINFOes { get; set; }
-       
-        private  SUPLIER _SUPLIER;
-        public virtual SUPLIER SUPLIER { get => _SUPLIER; set { _SUPLIER = value; OnPropertyChanged(); } }
-        private UNIT _UNIT;
-        public virtual UNIT UNIT { get => _UNIT; set { _UNIT = value; OnPropertyChanged(); } }
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual SUPLIER SUPLIER { get; set; }
+        public virtual UNIT UNIT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OUTPUTINFO> OUTPUTINFOes { get; set; }
     }
 }

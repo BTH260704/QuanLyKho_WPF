@@ -1,4 +1,4 @@
-﻿<Window x:Class="QuanLyKho.ObjectWindow"
+﻿<Window x:Class="QuanLyKho.OutputWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -19,7 +19,7 @@
         WindowStyle="None"
         x:Name="window"
         WindowStartupLocation="CenterScreen"
-        Title="Vật tư" Height="600" Width="900">
+        Title="Xuất kho" Height="600" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -39,30 +39,35 @@
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox VerticalAlignment="Center"
-                             Text="{Binding DisplayName,UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding ObjectDisplayName}"
                              materialDesign:HintAssist.Hint="Tên vật tư"
                              Margin="5 5 15 5"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox ItemsSource="{Binding Unit}" SelectedItem="{Binding SelectedUnit,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              materialDesign:HintAssist.Hint="Đơn vị đo" 
-                              materialDesign:HintAssist.IsFloating="True" 
-                              Margin="5 5 15 5"
-                              IsEnabled="True"> 
-                    </ComboBox>
-                    <ComboBox ItemsSource="{Binding Suplier}" SelectedItem="{Binding SelectedSuplier,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              materialDesign:HintAssist.Hint="Nhà cung cấp" 
+                    <DatePicker Margin="5 5 15 5"
+                                SelectedDate="{Binding DateOutput}"
+                                Width="110"
+                                materialDesign:HintAssist.Hint="Ngày xuất" 
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <TextBox VerticalAlignment="Center"
+                             Text="{Binding Count}"
+                             materialDesign:HintAssist.Hint="Số lượng"
+                             Margin="5 5 15 5"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox VerticalAlignment="center"
+                             Text="{Binding PriceOutput}"
+                             materialDesign:HintAssist.Hint="Giá bán"
+                             Margin="5 5 15 5"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox ItemsSource="{Binding Customer}" SelectedItem="{Binding SelectedRole,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Khách hàng" 
                               materialDesign:HintAssist.IsFloating="True" 
                               Margin="5 5 15 5"
                               IsEnabled="True">
                     </ComboBox>
                     <TextBox VerticalAlignment="Center"
-                             Text="{Binding QRCode,UpdateSourceTrigger=PropertyChanged}"
-                             materialDesign:HintAssist.Hint="QR code"
-                             Margin="5 5 15 5"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox VerticalAlignment="Center"
-                             Text="{Binding BarCode,UpdateSourceTrigger=PropertyChanged}"
-                             materialDesign:HintAssist.Hint="Bar code"
+                             Text="{Binding Status}"
+                             materialDesign:HintAssist.Hint="Trạng thái xuất"
                              Margin="5 5 15 5"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
@@ -81,12 +86,12 @@
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                                <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding Unit.DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Nhà cung cấp" DisplayMemberBinding="{Binding Suplier.DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="QRCode" DisplayMemberBinding="{Binding QRCode}"></GridViewColumn>
-                                <GridViewColumn Header="BarCode" DisplayMemberBinding="{Binding BarCode}"></GridViewColumn>
+                                <GridViewColumn Header="Vật tư" DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày xuất" DisplayMemberBinding="{Binding Output.DateOutput}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
+                                <GridViewColumn Header="Giá xuất" DisplayMemberBinding="{Binding InputInfo.OutputPrice}"></GridViewColumn>
+                                <GridViewColumn Header="Khách hàng" DisplayMemberBinding="{Binding Customer.DisplayName}"></GridViewColumn>
+                                <GridViewColumn Header="Trạng thái xuất" DisplayMemberBinding="{Binding Status}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

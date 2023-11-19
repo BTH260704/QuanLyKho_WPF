@@ -58,11 +58,14 @@
                             </TextBlock>
                         </Grid>
                         <Grid Grid.Row="1" Margin="0 35 0 0">
-                            <PasswordBox  materialDesign:HintAssist.Foreground="Red"
-                                          materialDesign:TextFieldAssist.UnderlineBrush="Red"
-                                          materialDesign:HintAssist.HelperText="Helper text"
-                                          materialDesign:HintAssist.Hint="Password"
-                                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+                            <TextBox VerticalAlignment="Center"
+                         Text="{Binding UserName}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="#FF673AB7"
+                         materialDesign:HintAssist.Foreground="#FF673AB7"
+                         materialDesign:HintAssist.Hint="UserName"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Height="50"
+                         FontSize="17" Background="#00000000"/>
                         </Grid>
                         <Grid Grid.Row="2" Margin="0 15 0 0">
                             <PasswordBox x:Name="FloatingPasswordBox"

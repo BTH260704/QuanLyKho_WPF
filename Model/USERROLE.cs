@@ -12,23 +12,18 @@ namespace QuanLyKho.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class SUPLIER
+    public partial class USERROLE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SUPLIER()
+        public USERROLE()
         {
-            this.OBJECTSSes = new HashSet<OBJECTSS>();
+            this.USERS = new HashSet<USER>();
         }
     
         public int ID { get; set; }
         public string DISPLAYNAME { get; set; }
-        public string ADDRESS { get; set; }
-        public string PHONE { get; set; }
-        public string EMAIL { get; set; }
-        public string MOREINFO { get; set; }
-        public Nullable<System.DateTime> CONTRACTDATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OBJECTSS> OBJECTSSes { get; set; }
+        public virtual ICollection<USER> USERS { get; set; }
     }
 }

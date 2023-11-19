@@ -9,24 +9,22 @@
 
 namespace QuanLyKho.Model
 {
+    using QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class SUPLIER
+    public partial class UNIT: BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SUPLIER()
+        public UNIT()
         {
             this.OBJECTSSes = new HashSet<OBJECTSS>();
         }
     
         public int ID { get; set; }
-        public string DISPLAYNAME { get; set; }
-        public string ADDRESS { get; set; }
-        public string PHONE { get; set; }
-        public string EMAIL { get; set; }
-        public string MOREINFO { get; set; }
-        public Nullable<System.DateTime> CONTRACTDATE { get; set; }
+
+        private string _DISPLAYNAME;
+        public string DISPLAYNAME { get=>_DISPLAYNAME; set { _DISPLAYNAME = value;OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OBJECTSS> OBJECTSSes { get; set; }
